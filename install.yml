@@ -1,0 +1,48 @@
+---
+ - hosts: all
+   vars:
+     common_packages:
+       - aptitude
+       - build-essential
+       - curl
+       - g++
+       - git
+       - htop
+       - iotop
+       - ipython
+       - less
+       - mc
+       - nmap
+       - nmap
+       - nodejs
+       - nodejs-dev
+       - openssh-server
+       - pv
+       - python-setuptools
+       - screen
+       - sshfs
+       - tig
+       - tmux
+       - traceroute
+       - tree
+       - unzip
+       - vim
+       - zsh
+
+     desktop_packages:
+       - baobab
+       - firefox
+       - gimp
+       - gparted
+       - libreoffice
+       - remmina
+       - rhytmbox
+       - skype
+       - synaptic
+       - thunderbird
+       - usb-creator-gtk
+       - vlc
+
+   roles:
+      - common
+      - desktop

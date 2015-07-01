@@ -1,0 +1,9 @@
+---
+- name: Assures {{user_homedir}}/.config/autostart dir exists
+  file: path={{user_homedir}}/.config/autostart state=directory
+        owner={{username}} group={{username}}
+- name: Autorun Gnome applications
+  template: src=autorun.desktop.j2
+            dest={{user_homedir}}/.config/autostart/{{item.name}}.desktop
+            owner={{username}} group={{username}}
+  with_items: autorun

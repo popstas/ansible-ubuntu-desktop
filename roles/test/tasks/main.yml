@@ -1,0 +1,17 @@
+#- name: test ppas
+#  apt_repository: repo='{{ item }}' update_cache=no
+#  with_items: test_ppas
+#  register: test_ppas
+#
+#- name: Update apt cache
+#  apt: update_cache=yes # cache_valid_time=3600
+#  when: test_ppas.changed
+#
+#- name: Install test packages
+#  apt: name={{item}}
+#  with_items: test_packages
+
+
+
+
+# TODO: pip plugins

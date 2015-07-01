@@ -1,0 +1,18 @@
+- name: Create linux user
+  user: name={{username}}
+        shell=/usr/bin/zsh
+        home={{user_homedir}}
+        password={{user_crypt_password}}
+        update_password=on_create
+
+- name: User autologin create config
+  lineinfile: dest=/etc/lightdm/lightdm.conf
+              create=yes owner=root group=root mode=0644
+              regexp='^\[SeatDefaults\]'
+              line='[SeatDefaults]'
+
+- name: User autologin
+  lineinfile: dest=/etc/lightdm/lightdm.conf
+              regexp=^autologin-user=
+              line=autologin-user={{username}}
+              insertafter='^\[SeatDefaults\]'

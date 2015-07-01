@@ -1,0 +1,17 @@
+- name: Assures {{user_homedir}}/.gconf/apps/gxneur exists
+  file: path={{user_homedir}}/.gconf/apps/gxneur state=directory
+        owner={{username}} group={{username}}
+
+- name: gxneur config
+  copy: src=gxneur-gconf.xml.j2
+            dest={{user_homedir}}/.gconf/apps/gxneur/%gconf.xml
+            owner={{username}} group={{username}}
+
+- name: Assures {{user_homedir}}/.xneur exists
+  file: path={{user_homedir}}/.xneur state=directory
+        owner={{username}} group={{username}}
+
+- name: gxneur config 2
+  copy: src=xneurrc
+            dest={{user_homedir}}/.xneur/xneurrc
+            owner={{username}} group={{username}}

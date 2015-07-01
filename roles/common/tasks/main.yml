@@ -1,3 +1,10 @@
-- name: Install common packages
-  apt: name={{item}} state=present
-  with_items: common_packages
+---
+- include: packages.yml
+- include: timezone.yml
+- include: locale.yml
+- include: ntp.yml
+- include: ssh.yml
+- include: vim.yml
+- include: users.yml
+- include: zsh.yml
+- include: bats.yml

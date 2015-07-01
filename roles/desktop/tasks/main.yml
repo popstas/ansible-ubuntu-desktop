@@ -1,3 +1,60 @@
+- include: user.yml
+
+- name: ppas
+  apt_repository: repo='{{ item }}' update_cache=no
+  with_items: ppas
+  register: ppas
+
+- name: Enable multiverse
+  apt_repository: repo='{{item}}' update_cache=no
+  register: multiverse_repo
+  when: ansible_distribution == 'Ubuntu'
+  with_items:
+    - 'deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} multiverse'
+    - 'deb-src http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} multiverse'
+    - 'deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}}-updates multiverse'
+    - 'deb-src http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}}-updates multiverse'
+
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  when: multiverse_repo.changed or ppas.changed
+
+- name: Install ubuntu desktop
+  apt: name=ubuntu-desktop install_recommends=no
+
+- name: Install ubuntu desktop additional
+  apt: name="{{item}}"
+  with_items:
+    - super-language-pack-{{language}}
+    - gnome-terminal
+    - indicator-session
+    - unity-lens-applications
+    - unity-lens-files
+
+- name: Accept popcorn-time licence
+  debconf: name='popcorn-time' question='shared/accepted-popcorntime-license-v1-1' value='true' vtype='select'
+
 - name: Install desktop packages
-  apt: name={{item}} state=present
+  apt: name="{{item}}"
   with_items: desktop_packages
+
+
+- name: Gnome and Unity settings
+  gsetting: user="{{username}}"
+            key="{{item.key}}"
+            value="{{item.value}}"
+  with_items: gsettings
+
+
+- include: autorun.yml
+
+- include: xneur.yml
+
+
+- name: Download RescutTime
+  get_url: url=https://www.rescuetime.com/installers/rescuetime_current_amd64.deb
+           dest=/usr/local/src/rescuetime_current_amd64.deb
+- name: Install RescutTime
+  apt: deb=/usr/local/src/rescuetime_current_amd64.deb state=installed
+
+

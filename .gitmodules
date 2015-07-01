@@ -1,0 +1,15 @@
+[submodule "roles/phpstorm"]
+	path = roles/phpstorm
+	url = https://github.com/kosssi/ansible-role-phpstorm.git
+[submodule "roles/docker"]
+	path = roles/docker
+	url = https://github.com/jdauphant/ansible-role-docker.git
+[submodule "library/gsetting"]
+	path = library/gsetting
+	url = https://github.com/jistr/ansible-gsetting.git
+[submodule "roles/vagrant"]
+	path = roles/vagrant
+	url = https://github.com/denkhaus/ansible-vagrant.git
+[submodule "roles/virtualbox"]
+	path = roles/virtualbox
+	url = https://github.com/azavea/ansible-virtualbox.git

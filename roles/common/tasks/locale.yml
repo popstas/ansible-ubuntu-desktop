@@ -1,0 +1,9 @@
+---
+
+- name: Generate locale
+  locale_gen: name={{ locale }} state=present
+  notify: update locale
+
+- name: Set locale
+  template: src=locale.j2 dest=/etc/locale
+  notify: update locale

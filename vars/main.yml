@@ -1,0 +1,107 @@
+---
+username: ubuntu
+user_homedir: /home/{{username}}
+music_dir: /media/media/music
+language: ru
+
+locale: 'ru_RU.UTF-8'
+timezone: 'Asia/Yekaterinburg'
+ntp_config_server: [ '0.ubuntu.pool.ntp.org', '1.ubuntu.pool.ntp.org', '2.ubuntu.pool.ntp.org', '3.ubuntu.pool.ntp.org' ]
+
+# about password crypt
+# http://docs.ansible.com/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+# or run `mkpasswd --method=SHA-512`
+# for ubuntu 14.04: aptitude install whois &&
+# here crypted
+user_crypt_password: '$6$w/ioRGWrLzoxT0$p/lUDrb3fp6kr6icTFMYzbsJTXL.EB7fLtV8dp3v.4yktsOpwbk.1IIf3J1LoLUNkPabseceM7Td/DHdbhbFa0'
+
+ppas:
+  - 'ppa:shutter/ppa' # screenshots
+  - 'ppa:pinta-maintainers/pinta-stable' # paint.net
+  - 'ppa:tualatrix/ppa' # ubuntu-tweak
+  - 'ppa:andrew-crew-kuznetsov/xneur-unstable' # gxneur
+  - 'ppa:webupd8team/java' # java
+  - 'ppa:webupd8team/sublime-text-3' # sublime text
+  - 'ppa:webupd8team/popcorntime' # popcorn-time
+  - 'ppa:diesch/testing' # classicmenu-indicator
+  - 'ppa:simon-cadman/cups-cloud-print' # cupscloudprint (google)
+
+test_ppas:
+  - 'ppa:tuxpoldo/btsync' # btsync
+
+common_packages:
+  - aptitude
+  - build-essential
+  - curl
+  - g++
+  - git
+  - htop
+  - iotop
+  - ipython
+  - less
+  - mc
+  - nmap
+  - nodejs
+  - nodejs-dev
+  - openssh-server
+  - php5-cli
+  - pv
+  - python-setuptools
+  - screen
+  - sshfs
+  - tig
+  - tmux
+  - traceroute
+  - tree
+  - unzip
+  - vim
+  - vnstat
+  - whois
+  - zsh
+
+desktop_packages:
+  - baobab
+  - classicmenu-indicator
+  - cupscloudprint           # google cloud print
+  - firefox
+  - gimp
+  - gparted
+  - guake                    # quake-like terminal
+  - libreoffice
+  - pinta                    # paint.net for linux
+  - remmina                  # remote desktop
+  - rhythmbox
+  - shutter                  # screenshots
+  - samba
+  - synaptic
+  - thunderbird
+  - transmission
+  - ubuntu-restricted-extras
+  - usb-creator-gtk
+  - vlc
+  - ubuntu-tweak
+  - unity-tweak-tool
+  - gnome-search-tool
+  - "myspell-{{ language }}"
+  - compizconfig-settings-manager
+  - sublime-text-installer
+  - popcorn-time
+
+test_packages:
+  - btsync # manual install # todo: config for btsync
+
+gsettings:
+  - { key: 'org.gnome.desktop.session.idle-delay',                  value: 'uint32 600' }
+  - { key: 'org.gnome.desktop.screensaver.lock-enabled',            value: 'false' }
+  - { key: 'org.gnome.desktop.screensaver.ubuntu-lock-on-suspend',  value: 'false' }
+  # keyboard
+  - { key: 'org.gnome.desktop.input-sources.sources',               value: "[('xkb', 'us'), ('xkb', 'ru')]" } # todo: don't work
+  - { key: 'org.gnome.desktop.wm.keybindings.switch-input-source',  value: "['<Alt>Shift_L']" }
+  # keyboard
+  - { key: 'org.gnome.rhythmbox.rhythmdb',                          value: "['file://{{music_dir}}']" } # TODO: always changed
+
+autorun:
+  - { name: guake, path: /usr/bin/guake }
+  - { name: gxneur, path: /usr/bin/gxneur, comment: 'X Neural Switcher' }
+  - { name: rescuetime, path: /usr/bin/rescuetime }
+  - { name: classicmenu-indicator, path: /usr/bin/classicmenu-indicator }

@@ -16,7 +16,7 @@
     - 'deb-src http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}}-updates multiverse'
 
 - name: Update apt cache
-  apt: update_cache=yes cache_valid_time=3600
+  apt: update_cache=yes
   when: multiverse_repo.changed or ppas.changed
 
 - name: Install ubuntu desktop

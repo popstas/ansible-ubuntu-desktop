@@ -25,7 +25,7 @@
 - name: Install ubuntu desktop additional
   apt: name="{{item}}"
   with_items:
-    - super-language-pack-{{language}}
+    - "language-pack-{{language}}"
     - gnome-terminal
     - indicator-session
     - unity-lens-applications

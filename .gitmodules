@@ -10,3 +10,6 @@
 [submodule "roles/vagrant"]
 	path = roles/vagrant
 	url = https://github.com/denkhaus/ansible-vagrant.git
+[submodule "roles/denkhaus.virtualbox"]
+	path = roles/denkhaus.virtualbox
+	url = https://github.com/azavea/ansible-virtualbox.git

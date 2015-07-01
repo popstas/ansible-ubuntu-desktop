@@ -11,7 +11,7 @@
      - ansible
      - docker
      - vagrant
-     - virtualbox
+     - denkhaus.virtualbox
 
      - desktop
      - { role: phpstorm, phpstorm_version: EAP-141.1815 }

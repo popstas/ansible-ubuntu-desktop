@@ -1,9 +1,14 @@
 - include: user.yml
 
-- name: ppas
-  apt_repository: repo='{{ item }}' update_cache=no
-  with_items: ppas
-  register: ppas
+#- name: ppas
+#  apt_repository: repo='{{ item }} {{ansible_distribution_release}}' update_cache=no
+#  with_items: ppas
+#  register: ppas
+
+#- name: debs
+#  apt_repository: repo='{{item}}' update_cache=no
+#  with_items: debs
+#  register: debs
 
 - name: Enable multiverse
   apt_repository: repo='{{item}}' update_cache=no
@@ -17,7 +22,7 @@
 
 - name: Update apt cache
   apt: update_cache=yes
-  when: multiverse_repo.changed or ppas.changed
+  when: multiverse_repo.changed # or ppas.changed
 
 - name: Install ubuntu desktop
   apt: name=ubuntu-desktop install_recommends=no
@@ -29,7 +34,7 @@
     - gnome-terminal
     - indicator-session
     - unity-lens-applications
-    - unity-lens-files
+    #- unity-lens-files
 
 - name: Accept popcorn-time licence
   debconf: name='popcorn-time' question='shared/accepted-popcorntime-license-v1-1' value='true' vtype='select'

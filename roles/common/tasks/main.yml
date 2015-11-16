@@ -7,4 +7,4 @@
 - include: vim.yml
 - include: users.yml
 - include: zsh.yml
-- include: bats.yml
+#- include: bats.yml

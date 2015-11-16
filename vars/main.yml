@@ -1,5 +1,5 @@
 ---
-username: ubuntu
+username: popstas
 user_homedir: /home/{{username}}
 music_dir: /media/media/music
 language: ru
@@ -16,15 +16,22 @@ ntp_config_server: [ '0.ubuntu.pool.ntp.org', '1.ubuntu.pool.ntp.org', '2.ubuntu
 user_crypt_password: '$6$w/ioRGWrLzoxT0$p/lUDrb3fp6kr6icTFMYzbsJTXL.EB7fLtV8dp3v.4yktsOpwbk.1IIf3J1LoLUNkPabseceM7Td/DHdbhbFa0'
 
 ppas:
-  - 'ppa:shutter/ppa' # screenshots
-  - 'ppa:pinta-maintainers/pinta-stable' # paint.net
-  - 'ppa:tualatrix/ppa' # ubuntu-tweak
-  - 'ppa:andrew-crew-kuznetsov/xneur-unstable' # gxneur
-  - 'ppa:webupd8team/java' # java
-  - 'ppa:webupd8team/sublime-text-3' # sublime text
-  - 'ppa:webupd8team/popcorntime' # popcorn-time
-  - 'ppa:diesch/testing' # classicmenu-indicator
-  - 'ppa:simon-cadman/cups-cloud-print' # cupscloudprint (google)
+  #- 'ppa:shutter/ppa' # screenshots
+  #- 'ppa:pinta-maintainers/pinta-stable' # paint.net
+  #- 'ppa:tualatrix/ppa' # ubuntu-tweak
+  #- 'ppa:andrew-crew-kuznetsov/xneur-unstable' # gxneur
+  #- 'ppa:webupd8team/java' # java
+  #- 'ppa:webupd8team/sublime-text-3' # sublime text
+  #- 'ppa:webupd8team/popcorntime' # popcorn-time
+  #- 'ppa:diesch/testing' # classicmenu-indicator
+  #- 'ppa:simon-cadman/cups-cloud-print' # cupscloudprint (google), dead repo
+  #- 'ppa:remmina-ppa-team/remmina-next' # remmina beta
+  #- 'ppa:purple-vk-plugin/dev' # purple-vk-plugin
+  #- 'ppa:xorg-edgers/ppa ' # latest graphical drivers
+  #- 'ppa:jconti/recent-notifications' # http://www.webupd8.org/2011/07/recent-notifications-indicator-keeps.html
+
+debs:
+  - 'http://dl.google.com/linux/chrome/deb/ stable main'
 
 test_ppas:
   - 'ppa:tuxpoldo/btsync' # btsync
@@ -40,6 +47,7 @@ common_packages:
   - ipython
   - less
   - mc
+  - ncdu
   - nmap
   - nodejs
   - nodejs-dev
@@ -57,35 +65,49 @@ common_packages:
   - vim
   - vnstat
   - whois
+  #- wine # TODO
   - zsh
+
+pip_packages:
+  - glances # https://github.com/nicolargo/glances
+  - howdoi # requires libxml2-dev libxslt-dev packages
+  - httpie # https://github.com/jkbrzt/httpie
+  - percol # https://github.com/mooz/percol
 
 desktop_packages:
   - baobab
-  - classicmenu-indicator
-  - cupscloudprint           # google cloud print
+  #- classicmenu-indicator
+  #- cupscloudprint           # google cloud print, dead repo
   - firefox
   - gimp
   - gparted
   - guake                    # quake-like terminal
+  #- indicator-notifications
+  - "language-pack-{{ language }}"
   - libreoffice
   - pinta                    # paint.net for linux
+  - pidgin
+  - purple-vk-plugin         # vk for pidgin
+  - pulseaudio-module-bluetooth # http://askubuntu.com/questions/414258/successfully-connected-to-a-bluetooth-speaker-but-how-do-i-direct-sound-there
   - remmina                  # remote desktop
   - rhythmbox
-  - shutter                  # screenshots
+  #- shutter                  # screenshots
   - samba
   - synaptic
   - thunderbird
   - transmission
   - ubuntu-restricted-extras
   - usb-creator-gtk
+  - vim-gnome
   - vlc
-  - ubuntu-tweak
+  #- ubuntu-tweak
+  - wine
   - unity-tweak-tool
   - gnome-search-tool
   - "myspell-{{ language }}"
   - compizconfig-settings-manager
-  - sublime-text-installer
-  - popcorn-time
+  #- sublime-text-installer
+  #- popcorn-time
 
 test_packages:
   - btsync # manual install # todo: config for btsync
@@ -105,3 +127,4 @@ autorun:
   - { name: gxneur, path: /usr/bin/gxneur, comment: 'X Neural Switcher' }
   - { name: rescuetime, path: /usr/bin/rescuetime }
   - { name: classicmenu-indicator, path: /usr/bin/classicmenu-indicator }
+  - { name: transmission, path: /usr/bin/transmission-gtk }

@@ -13,4 +13,4 @@ vagrant up
 ```
 
 ## TODO
-See [install.log](install.log)
+See [install.md](install.md)

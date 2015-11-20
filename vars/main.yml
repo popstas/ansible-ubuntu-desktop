@@ -46,13 +46,17 @@ common_packages:
   - iotop
   - ipython
   - less
+  - lnav
   - mc
+  - mtr
   - ncdu
   - nmap
   - nodejs
   - nodejs-dev
   - openssh-server
   - php5-cli
+  - php5-curl
+  - php5-gd
   - pv
   - python-setuptools
   - screen
@@ -65,7 +69,6 @@ common_packages:
   - vim
   - vnstat
   - whois
-  #- wine # TODO
   - zsh
 
 pip_packages:
